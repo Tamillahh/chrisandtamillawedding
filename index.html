@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -321,18 +322,18 @@
                 <input type="tel" id="phone" name="phone" placeholder="(512) 555-1234">
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="(512) 555-1234">
+                <label for="phone2">Phone Number</label>
+                <input type="tel" id="phone2" name="phone2" placeholder="(512) 555-1234">
             </div>
             <div class="form-group">
                 <label>Will You Join Us?</label>
                 <div class="att-options">
                     <div class="att-option">
-                        <input type="radio" id="yes" name="attending" value="yes" required>
+                        <input type="radio" id="yes" name="rsvp" value="Accept" required>
                         <label for="yes"><span class="option-icon yes-icon"></span><span>Joyfully Accept</span></label>
                     </div>
                     <div class="att-option">
-                        <input type="radio" id="no" name="attending" value="no">
+                        <input type="radio" id="no" name="rsvp" value="Decline">
                         <label for="no"><span class="option-icon no-icon"></span><span>Regretfully Decline</span></label>
                     </div>
                 </div>
@@ -348,11 +349,11 @@
                 <label>Accommodation</label>
                 <div class="att-options">
                     <div class="att-option">
-                        <input type="radio" id="stay-yes" name="accommodation" value="yes">
+                        <input type="radio" id="stay-yes" name="accommodation" value="Stay nearby">
                         <label for="stay-yes"><span class="option-icon stay-icon"></span><span>I'd like to stay nearby</span></label>
                     </div>
                     <div class="att-option">
-                        <input type="radio" id="stay-no" name="accommodation" value="no">
+                        <input type="radio" id="stay-no" name="accommodation" value="No accommodation">
                         <label for="stay-no"><span class="option-icon nostay-icon"></span><span>I won't need accommodation</span></label>
                     </div>
                 </div>
@@ -400,19 +401,36 @@
         const toggleGuests = () => guestGroup.style.display = noRadio.checked ? 'none' : 'block';
         yesRadio.addEventListener('change', toggleGuests);
         noRadio.addEventListener('change', toggleGuests);
+        toggleGuests();
 
-        form.addEventListener('submit', e => {
+        const ENDPOINT = 'https://script.google.com/macros/s/AKfycbx7RFS9IAmIBWt8KgLZDJSg04Ld2CvDEOLm3xHQhXouChGdAzxta49Kv_iwpeZNne_U-A/exec';
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = Object.fromEntries(new FormData(form));
-            data.timestamp = new Date().toISOString();
-            const rsvps = JSON.parse(localStorage.getItem('wedding-rsvps') || '[]');
-            rsvps.push(data);
-            localStorage.setItem('wedding-rsvps', JSON.stringify(rsvps));
-            form.style.display = 'none';
-            success.classList.add('show');
-            if (data.attending === 'no') {
-                success.querySelector('h3').textContent = "We'll miss you!";
-                success.querySelector('p').textContent = "Thanks for letting us know.";
+
+            const payload = Object.fromEntries(new FormData(form).entries());
+            payload.source = window.location.href;
+
+            try {
+                const res = await fetch(ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+
+                const out = await res.json();
+                if (!out.ok) throw new Error(out.error || 'Unknown error');
+
+                // success UI
+                form.style.display = 'none';
+                success.classList.add('show');
+
+                if (payload.rsvp === 'Decline') {
+                    success.querySelector('h3').textContent = "We'll miss you!";
+                    success.querySelector('p').textContent = 'Thanks for letting us know.';
+                }
+            } catch (err) {
+                alert('Sorry — your RSVP did not send. Please try again.\n\n' + err.message);
             }
         });
 
