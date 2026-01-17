@@ -58,7 +58,7 @@
             opacity: 0.6;
         }
 
-        .hero::after {
+                .hero::after {
             content: '';
             position: absolute;
             inset: 0;
@@ -306,7 +306,7 @@
             <h2 class="sec-title">RSVP</h2>
         </div>
         <p class="rsvp-intro reveal">Please let us know if you can join our intimate celebration<span class="deadline">Kindly respond by February 28th</span></p>
-
+        
         <form class="rsvp-form reveal" id="rsvpForm">
             <div class="form-group">
                 <label for="name">Your Name</label>
@@ -410,24 +410,15 @@
             const payload = Object.fromEntries(new FormData(form).entries());
             payload.source = window.location.href;
 
-            // IMPORTANT: avoid CORS preflight by sending form-encoded data (no headers)
-            const body = new URLSearchParams(payload);
-
             try {
                 const res = await fetch(ENDPOINT, {
                     method: 'POST',
-                    body
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
                 });
 
-                // If fetch resolves, it usually posted.
-                // Try to parse JSON if available; otherwise treat as ok.
-                let ok = res.ok;
-                try {
-                    const out = await res.json();
-                    ok = !!out.ok;
-                } catch (_) {}
-
-                if (!ok) throw new Error('Request did not complete successfully.');
+                const out = await res.json();
+                if (!out.ok) throw new Error(out.error || 'Unknown error');
 
                 // success UI
                 form.style.display = 'none';
