@@ -328,8 +328,8 @@
                 <label for="rsvp">Will You Join Us?</label>
                 <select id="rsvp" name="rsvp" required>
                     <option value="">Please select...</option>
-                    <option value="Accept">Joyfully Accept</option>
-                    <option value="Decline">Regretfully Decline</option>
+                    <option value="Joyfully Accept">Joyfully Accept</option>
+                    <option value="Regretfully Decline">Regretfully Decline</option>
                 </select>
             </div>
             <div class="form-group" id="guestGroup">
@@ -347,8 +347,8 @@
                 <label for="accommodation">Accommodation</label>
                 <select id="accommodation" name="accommodation">
                     <option value="">Please select...</option>
-                    <option value="Stay nearby">I'd like to stay nearby</option>
-                    <option value="No accommodation">I won't need accommodation</option>
+                    <option value="I'd like to stay nearby">I'd like to stay nearby</option>
+                    <option value="I won't need accommodation">I won't need accommodation</option>
                 </select>
             </div>
             <div class="form-group">
@@ -391,7 +391,7 @@
         const rsvpSelect = document.getElementById('rsvp');
         
         const toggleGuests = () => {
-            guestGroup.style.display = rsvpSelect.value === 'Decline' ? 'none' : 'block';
+            guestGroup.style.display = rsvpSelect.value === 'Regretfully Decline' ? 'none' : 'block';
         };
         rsvpSelect.addEventListener('change', toggleGuests);
         toggleGuests();
