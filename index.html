@@ -325,17 +325,12 @@
                 <input type="tel" id="phone" name="phone" placeholder="(512) 555-1234">
             </div>
             <div class="form-group">
-                <label>Will You Join Us?</label>
-                <div class="att-options">
-                    <label class="att-option">
-                        <input type="radio" name="rsvp" value="Accept" required>
-                        <span class="option-box"><span class="option-icon yes-icon"></span><span>Joyfully Accept</span></span>
-                    </label>
-                    <label class="att-option">
-                        <input type="radio" name="rsvp" value="Decline">
-                        <span class="option-box"><span class="option-icon no-icon"></span><span>Regretfully Decline</span></span>
-                    </label>
-                </div>
+                <label for="rsvp">Will You Join Us?</label>
+                <select id="rsvp" name="rsvp" required>
+                    <option value="">Please select...</option>
+                    <option value="Accept">Joyfully Accept</option>
+                    <option value="Decline">Regretfully Decline</option>
+                </select>
             </div>
             <div class="form-group" id="guestGroup">
                 <label for="guests">Number of Guests</label>
@@ -349,17 +344,12 @@
                 <input type="text" id="plusOneName" name="plusOneName" placeholder="Their first and last name">
             </div>
             <div class="form-group">
-                <label>Accommodation</label>
-                <div class="att-options">
-                    <label class="att-option">
-                        <input type="radio" name="accommodation" value="Stay nearby">
-                        <span class="option-box"><span class="option-icon stay-icon"></span><span>I'd like to stay nearby</span></span>
-                    </label>
-                    <label class="att-option">
-                        <input type="radio" name="accommodation" value="No accommodation">
-                        <span class="option-box"><span class="option-icon nostay-icon"></span><span>I won't need accommodation</span></span>
-                    </label>
-                </div>
+                <label for="accommodation">Accommodation</label>
+                <select id="accommodation" name="accommodation">
+                    <option value="">Please select...</option>
+                    <option value="Stay nearby">I'd like to stay nearby</option>
+                    <option value="No accommodation">I won't need accommodation</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="notes">Notes</label>
@@ -398,13 +388,12 @@
         const form = document.getElementById('rsvpForm');
         const success = document.getElementById('success');
         const guestGroup = document.getElementById('guestGroup');
-        const rsvpRadios = document.querySelectorAll('input[name="rsvp"]');
+        const rsvpSelect = document.getElementById('rsvp');
         
         const toggleGuests = () => {
-            const declined = document.querySelector('input[name="rsvp"][value="Decline"]').checked;
-            guestGroup.style.display = declined ? 'none' : 'block';
+            guestGroup.style.display = rsvpSelect.value === 'Decline' ? 'none' : 'block';
         };
-        rsvpRadios.forEach(radio => radio.addEventListener('change', toggleGuests));
+        rsvpSelect.addEventListener('change', toggleGuests);
         toggleGuests();
 
         // Plus one name toggle
