@@ -409,20 +409,21 @@
             e.preventDefault();
 
             const formData = new FormData(form);
-            formData.append('source', window.location.href);
+            const payload = Object.fromEntries(formData.entries());
+            payload.source = window.location.href;
 
             try {
                 await fetch(ENDPOINT, {
                     method: 'POST',
-                    body: formData,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
                 });
 
                 // success UI
                 form.style.display = 'none';
                 success.classList.add('show');
 
-                const rsvpValue = formData.get('rsvp');
-                if (rsvpValue === 'Decline') {
+                if (payload.rsvp === 'Regretfully Decline') {
                     success.querySelector('h3').textContent = "We'll miss you!";
                     success.querySelector('p').textContent = 'Thanks for letting us know.';
                 }
