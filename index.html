@@ -278,47 +278,7 @@
         .card a { color: var(--forest); text-decoration: none; border-bottom: 1px solid var(--sage-light); transition: all 0.3s; }
         .card a:hover { color: var(--gold); border-color: var(--gold); }
 
-        /* RSVP */
-        .rsvp { background: radial-gradient(ellipse at 20% 80%, rgba(201,162,39,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(125,154,140,0.08) 0%, transparent 50%), var(--cream); }
-        .rsvp-intro { text-align: center; font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--forest); margin: -30px auto 50px; font-style: italic; max-width: 480px; }
-        .rsvp-intro .deadline { display: block; margin-top: 12px; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-style: normal; letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper); }
-        .rsvp-form { max-width: 500px; margin: 0 auto; background: var(--warm-white); padding: 50px 40px; border: 1px solid rgba(125,154,140,0.15); position: relative; }
-        .rsvp-form::before { content: ''; position: absolute; top: -1px; left: 40px; right: 40px; height: 3px; background: linear-gradient(90deg, transparent, var(--fuscia), var(--gold), transparent); }
-        .form-group { margin-bottom: 28px; }
-        .form-group label { display: block; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--forest); margin-bottom: 10px; font-weight: 500; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 16px 18px; font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 300; color: var(--charcoal); background: var(--cream); border: 1px solid var(--sage-light); transition: all 0.3s; -webkit-appearance: none; }
-        .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237d9a8c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 45px; cursor: pointer; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,162,39,0.1); }
-        .form-group textarea { min-height: 100px; resize: vertical; }
-        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--sage); }
-        .att-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .att-option { position: relative; display: block; cursor: pointer; }
-        .att-option input { position: absolute; opacity: 0; pointer-events: none; }
-        .att-option .option-box { display: flex; flex-direction: column; align-items: center; padding: 25px 15px; background: var(--cream); border: 2px solid var(--sage-light); transition: all 0.4s; }
-        .att-option label .option-icon { width: 40px; height: 40px; margin-bottom: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
-        .att-option label .yes-icon { background: linear-gradient(135deg, var(--sage-light), var(--sage)); }
-        .att-option label .yes-icon::before { content: ''; width: 12px; height: 6px; border-left: 2px solid var(--deep-green); border-bottom: 2px solid var(--deep-green); transform: rotate(-45deg) translateY(-2px); }
-        .att-option label .no-icon { background: linear-gradient(135deg, var(--fuscia-light), var(--fuscia)); }
-        .att-option label .no-icon::before { content: ''; width: 14px; height: 2px; background: white; }
-        .att-option label .stay-icon { background: linear-gradient(135deg, var(--gold), var(--copper)); }
-        .att-option label .stay-icon::before { content: ''; width: 14px; height: 10px; border: 2px solid var(--deep-green); border-bottom: none; position: relative; }
-        .att-option label .stay-icon::after { content: ''; position: absolute; width: 0; height: 0; border-left: 9px solid transparent; border-right: 9px solid transparent; border-bottom: 7px solid var(--deep-green); margin-top: -14px; }
-        .att-option label .nostay-icon { background: linear-gradient(135deg, var(--sage-light), var(--sage)); }
-        .att-option label .nostay-icon::before { content: ''; width: 12px; height: 2px; background: var(--deep-green); }
-        .att-option input:checked + .option-box { border-color: var(--fuscia); background: rgba(196,20,122,0.08); }
-        .att-option input:checked + .option-box .option-icon { transform: scale(1.15); }
-        .att-option .option-box span:last-child { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--forest); }
-        .submit-btn { width: 100%; padding: 20px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cream); background: var(--deep-green); border: none; cursor: pointer; transition: all 0.4s; margin-top: 10px; position: relative; overflow: hidden; }
-        .submit-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--fuscia), var(--gold)); transform: translateX(-100%); transition: transform 0.4s; }
-        .submit-btn span { position: relative; z-index: 1; }
-        .submit-btn:hover::before { transform: translateX(0); }
-        .success { display: none; text-align: center; padding: 60px 30px; background: var(--warm-white); border: 1px solid rgba(125,154,140,0.15); }
-        .success.show { display: block; animation: pop 0.5s cubic-bezier(0.4,0,0.2,1); }
-        @keyframes pop { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
-        .success .check { width: 70px; height: 70px; margin: 0 auto 25px; background: linear-gradient(135deg, var(--sage-light), var(--sage)); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .success .check::before { content: ''; width: 20px; height: 10px; border-left: 3px solid var(--deep-green); border-bottom: 3px solid var(--deep-green); transform: rotate(-45deg) translateY(-3px); }
-        .success h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--deep-green); margin-bottom: 10px; font-weight: 400; }
-        .success p { font-size: 1rem; color: var(--forest); }
+
 
         /* FOOTER */
         footer { text-align: center; padding: 80px 24px; background: var(--deep-green); color: var(--cream); position: relative; }
@@ -341,7 +301,6 @@
         }
         @media (max-width: 600px) {
             section { padding: 70px 18px; }
-            .rsvp-form { padding: 35px 22px; }
             .att-options { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-item:nth-child(1) { grid-column: span 1; }
@@ -402,66 +361,6 @@
             </div>
         </div>
     </section>
-
-    <!-- RSVP -->
-    <section class="rsvp" id="rsvp">
-        <div class="sec-header reveal">
-            <span class="sec-label">We'd Love to See You</span>
-            <h2 class="sec-title">RSVP</h2>
-        </div>
-        <p class="rsvp-intro reveal">Please let us know if you can join our intimate celebration<span class="deadline">Kindly respond by February 18th • Adults only, please leave the kiddos at home</span></p>
-        
-        <form class="rsvp-form reveal" id="rsvpForm">
-            <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" placeholder="First and Last Name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Mailing Address</label>
-                <textarea id="address" name="address" placeholder="123 Main St&#10;Austin, TX 78701" style="min-height: 70px;"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="(512) 555-1234">
-            </div>
-            <div class="form-group">
-                <label for="rsvp">Will You Join Us?</label>
-                <select id="rsvp" name="rsvp" required>
-                    <option value="">Please select...</option>
-                    <option value="Joyfully Accept">Joyfully Accept</option>
-                    <option value="Regretfully Decline">Regretfully Decline</option>
-                </select>
-            </div>
-            <div class="form-group" id="guestGroup">
-                <label for="guests">Number of Guests</label>
-                <select id="guests" name="guests">
-                    <option value="1">Just Me</option>
-                    <option value="2">Me + 1</option>
-                </select>
-            </div>
-            <div class="form-group" id="plusOneGroup" style="display: none;">
-                <label for="plusOneName">Plus One's Name</label>
-                <input type="text" id="plusOneName" name="plusOneName" placeholder="Their first and last name">
-            </div>
-            <div class="form-group">
-                <label for="accommodation">Accommodation</label>
-                <select id="accommodation" name="accommodation">
-                    <option value="">Please select...</option>
-                    <option value="Yes, need accommodation">Yes, I need accommodation</option>
-                    <option value="No, do not need accommodation">No, I do not need accommodation</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="notes">Notes</label>
-                <textarea id="notes" name="notes" placeholder="Dietary needs or a message for us..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn"><span>Send RSVP</span></button>
-        </form>
-
         <div class="success" id="success">
             <div class="check"></div>
             <h3>You're on the list!</h3>
@@ -487,54 +386,6 @@
         };
         window.addEventListener('scroll', onScroll);
         onScroll();
-
-        // Form handling
-        const form = document.getElementById('rsvpForm');
-        const success = document.getElementById('success');
-        const guestGroup = document.getElementById('guestGroup');
-        const rsvpSelect = document.getElementById('rsvp');
-        
-        const toggleGuests = () => {
-            guestGroup.style.display = rsvpSelect.value === 'Regretfully Decline' ? 'none' : 'block';
-        };
-        rsvpSelect.addEventListener('change', toggleGuests);
-        toggleGuests();
-
-        // Plus one name toggle
-        const guestsSelect = document.getElementById('guests');
-        const plusOneGroup = document.getElementById('plusOneGroup');
-        const togglePlusOne = () => plusOneGroup.style.display = guestsSelect.value === '2' ? 'block' : 'none';
-        guestsSelect.addEventListener('change', togglePlusOne);
-        togglePlusOne();
-
-        const ENDPOINT = 'https://hook.us2.make.com/teibh4fj1bo8i9hhna6dk0bkof9ggpxj';
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(form);
-            const payload = Object.fromEntries(formData.entries());
-            payload.source = window.location.href;
-
-            try {
-                await fetch(ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                });
-
-                // success UI
-                form.style.display = 'none';
-                success.classList.add('show');
-
-                if (payload.rsvp === 'Regretfully Decline') {
-                    success.querySelector('h3').textContent = "We'll miss you!";
-                    success.querySelector('p').textContent = 'Thanks for letting us know.';
-                }
-            } catch (err) {
-                alert('Sorry — your RSVP did not send. Please try again.\n\n' + err.message);
-            }
-        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
